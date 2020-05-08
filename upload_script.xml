@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="upload" basedir=".">
+	<!--設定-->
+	<property file="build.properties" />
+	
+	<!-- JARファイル作成 -->
+	<target name="upload" description="Scriptファイルをサーバにアップロード">
+		<!-- upload to remote server -->
+		<scp todir="${username}@${host}:${script.server.path}" password="${password}" trust="yes">
+		  <sort>
+		    <reverse>
+		      <date/>
+		    </reverse>
+		    <fileset dir="${script.local.path}">
+		      <include name="**/*.js"/>
+		    </fileset>
+		  </sort>
+		</scp>
+	</target>	
+</project>

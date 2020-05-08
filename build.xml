@@ -22,7 +22,7 @@
 	<!-- コンパイル -->
 	<target name="compile" description="パッケージのコンパイル" depends="init">
 		<echo message="2.コンパイルを行います" />
-		<javac srcdir="${dir.src}" destdir="${dir.temp}" executable="${compiler}" includeantruntime="false">
+		<javac srcdir="${dir.src}" destdir="${dir.temp}" executable="${JAVAC}" includeantruntime="false">
 			<classpath refid="build.classpath"/>
 			<!-- testパッケージを除く -->
 			<exclude name="test/**" />
@@ -33,10 +33,15 @@
 	<target name="makeJar" description="JARファイル作成" depends="compile">
 		<echo message="4.JARファイルを作成します" />
 		<jar basedir="${dir.temp}" destfile="${jar.filename}.jar" />
+		
+		<!-- upload to remote server -->
+		<scp file="${jar.filename}.jar" todir="${username}@${host}:${server.lib}" password="${password}" trust="yes"/>
+
 		<delete dir="${dir.temp}" />
 	</target>
 	
 	<!--JAR作成処理入口-->
 	<target name="build" description="jarアーカイブのフルビルド" depends="makeJar" />
-
+	  
+	
 </project>

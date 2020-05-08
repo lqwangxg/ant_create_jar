@@ -2,4 +2,4 @@ REM Às‚·‚é‘O‚ÉAbuild.properties‚Éserver‚ÖÚ‘±—phost, username, password,‚Ìİ’
 
 SET ANT_HOME=C:/imart/eBuilder8/plugins/org.apache.ant_1.10.5.v20180808-0324/
 
-%ANT_HOME%bin\ant -f build.xml -lib jsch-0.1.55.jar
+%ANT_HOME%bin\ant -f upload_script.xml -lib jsch-0.1.55.jar
